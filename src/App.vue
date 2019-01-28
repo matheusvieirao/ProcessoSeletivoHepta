@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <ListaProdutos v-bind:listaprodutos="lista_de_produtos" v-on:del-produto="deleteProduto"/>
+    <ListaProdutos
+      v-bind:listaprodutos="lista_de_produtos"
+      v-on:addProduto="addProduto"
+      v-on:del-produto="deleteProduto"
+    />
   </div>
 </template>
 
@@ -62,6 +66,10 @@ export default {
       this.lista_de_produtos = this.lista_de_produtos.filter(
         prod => prod.id != id
       );
+    },
+    addProduto(novoProduto) {
+      this.lista_de_produtos = [...this.lista_de_produtos, novoProduto];
+      console.log(novoProduto);
     }
   }
 };
