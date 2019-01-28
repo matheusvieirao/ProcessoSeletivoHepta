@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <b-table striped hover :items="listaprodutos" :fields="fields"></b-table> -->
     <table>
       <tr>
         <th>Nome</th>
@@ -15,36 +16,57 @@
           v-on:del-produto="$emit('del-produto',produto_aux.id)"
         />
       </tbody>
+      <!-- Add Produto -->
       <tr>
         <th>
-          <input type="text" v-model="prod.nome" name="nome" placeholder="Nome...">
+          <b-form-input type="text" v-model="prod.nome" name="nome" placeholder="Nome..."></b-form-input>
         </th>
         <th>
-          <input
+          <b-form-input
             type="text"
             v-model="prod.fabricante"
             name="fabricante"
             placeholder="Fabricante..."
-          >
+          ></b-form-input>
         </th>
         <th>
-          <input type="text" v-model="prod.volume.altura" name="altura" placeholder="Altura...">
-          <input type="text" v-model="prod.volume.largura" name="largura" placeholder="Largura...">
-          <input
-            type="text"
-            v-model="prod.volume.profundidade"
-            name="profundidade"
-            placeholder="Profundidade..."
-          >
+          <b-container>
+            <b-form-row>
+              <b-col>
+                <b-form-input
+                  type="text"
+                  v-model="prod.volume.altura"
+                  name="altura"
+                  placeholder="Altura..."
+                ></b-form-input>
+              </b-col>
+              <b-col>
+                <b-form-input
+                  type="text"
+                  v-model="prod.volume.largura"
+                  name="largura"
+                  placeholder="Largura..."
+                ></b-form-input>
+              </b-col>
+              <b-col>
+                <b-form-input
+                  type="text"
+                  v-model="prod.volume.profundidade"
+                  name="profundidade"
+                  placeholder="Profundidade..."
+                ></b-form-input>
+              </b-col>
+            </b-form-row>
+          </b-container>
         </th>
         <th>
-          <input type="text" v-model="prod.unidade" name="unidade" placeholder="Unidade...">
+          <b-form-input type="text" v-model="prod.unidade" name="unidade" placeholder="Unidade..."></b-form-input>
         </th>
         <th>
-          <input type="text" v-model="prod.estoque" name="estoque" placeholder="Estoque...">
+          <b-form-input type="text" v-model="prod.estoque" name="estoque" placeholder="Estoque..."></b-form-input>
         </th>
         <th>
-          <input type="submit" value="Submit" class="btn" @click.prevent.stop="addProduto">
+          <b-button type="submit" variant="primary" @click.prevent.stop="addProduto">Enviar</b-button>
         </th>
       </tr>
     </table>
@@ -54,6 +76,16 @@
 <script>
 import Produto from "./Produto.vue";
 import uuid from "uuid";
+
+const items = [
+  {
+    Nome: "Nome",
+    Fabricante: "Fabricante",
+    Volume: [],
+    Unidade: "Unidade",
+    Estoque: "Estoque"
+  }
+];
 
 export default {
   name: "ListaProdutos",
@@ -72,7 +104,9 @@ export default {
         },
         unidade: "",
         estoque: ""
-      }
+      },
+      fields: ["nome", "fabricante", "volume", "unidade", "estoque"],
+      items: items
     };
   },
   methods: {

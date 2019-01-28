@@ -1,6 +1,14 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <img
+      alt="Vue logo"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQseV0_tE4bbw66l7c_Yz_entfI5r_fyFpKeq_4v0Hcw70JUXB2"
+    >
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <ListaProdutos
       v-bind:listaprodutos="lista_de_produtos"
       v-on:addProduto="addProduto"
