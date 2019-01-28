@@ -53,6 +53,8 @@
 
 <script>
 import Produto from "./Produto.vue";
+import uuid from "uuid";
+
 export default {
   name: "ListaProdutos",
   components: {
@@ -75,7 +77,26 @@ export default {
   },
   methods: {
     addProduto() {
-      this.$emit("addProduto", this.prod);
+      const newProd = {
+        id: uuid.v4(),
+        nome: this.prod.nome,
+        fabricante: this.prod.fabricante,
+        volume: {
+          altura: this.prod.volume.altura,
+          largura: this.prod.volume.largura,
+          profundidade: this.prod.volume.profundidade
+        },
+        unidade: this.prod.unidade,
+        estoque: this.prod.estoque
+      };
+      this.prod.nome = "";
+      this.prod.fabricante = "";
+      this.prod.volume.altura = "";
+      this.prod.volume.largura = "";
+      this.prod.volume.profundidade = "";
+      this.prod.unidade = "";
+      this.prod.estoque = "";
+      this.$emit("addProduto", newProd);
     }
   },
   props: ["listaprodutos"]

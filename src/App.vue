@@ -12,6 +12,7 @@
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 import ListaProdutos from "./components/ListaProdutos.vue";
+import uuid from "uuid";
 
 export default {
   name: "app",
@@ -23,7 +24,7 @@ export default {
     return {
       lista_de_produtos: [
         {
-          id: 1,
+          id: uuid.v4(),
           nome: "Halls",
           fabricante: "Mondelēz International",
           volume: {
@@ -35,7 +36,7 @@ export default {
           estoque: "A3-12"
         },
         {
-          id: 2,
+          id: uuid.v4(),
           nome: "Trident",
           fabricante: "Mondelēz International",
           volume: {
@@ -47,7 +48,7 @@ export default {
           estoque: "A3-13"
         },
         {
-          id: 3,
+          id: uuid.v4(),
           nome: "Tic Tac",
           fabricante: "Ferrero SpA",
           volume: {
@@ -69,7 +70,6 @@ export default {
     },
     addProduto(novoProduto) {
       this.lista_de_produtos = [...this.lista_de_produtos, novoProduto];
-      console.log(novoProduto);
     }
   }
 };
